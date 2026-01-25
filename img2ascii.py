@@ -2,19 +2,19 @@ import sys
 from PIL import Image
     
 def convert2ASCII(img):
-    w,h = img.size
+    width,height = img.size
     
     #Fill grid list with image size
     grid = []
-    for i in range(h):
-        grid.append(["X"]*w)
+    for i in range(height):
+        grid.append(["X"]*width)
 
     #Load pixel data
     pixels = img.load()
 
     #Match colours to ASCII characters
-    for y in range(h):
-        for x in range(w):
+    for y in range(height):
+        for x in range(width):
             if sum(pixels[x,y]) == 0:
                 grid[y][x] = "#"
             elif sum(pixels[x,y]) in range(1,100):
@@ -57,21 +57,21 @@ elif argc >= 3:
     img = Image.open(sys.argv[1]) 
     
     #Set required variables using image data
-    w,h = img.size
+    width,height = img.size
     type = img.format
     scale = int(sys.argv[2])
     
     #Resize image. Save
-    img.resize((w//scale, h//scale)).save("scaled.%s"%type)
+    img.resize((width//scale, height//scale)).save("scaled.%s"%type)
     
     #Open resized image
     img = Image.open("scaled.%s"%type)
     
 #Write converted ascii characters to text file then close file
-txtFile = open("ascii.txt", 'w')
+file = open("ascii.txt", 'w')
 for row in convert2ASCII(img):
-    txtFile.write("".join(row)+'\n')
-txtFile.close()
+    file.write("".join(row)+'\n')
+file.close()
 
 #Notify conversion was successful
 print("Conversion completed successfully!")
