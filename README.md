@@ -8,7 +8,9 @@ img2ascii is an image conversion tool to convert any still image to ascii charac
 
 ## How to use
 `python3 img2ascii.py <ImageFile> <Scale>`\
-Output is stored as text file, ascii.txt. Scaled images are generated then removed upon completion. Scale is an optional argument.
+Scale is an optional argument.\
+Scaled images are generated then removed upon completion.\
+Output is stored as text file, ascii.txt.
 
 ## Example:
 `python3 img2ascii.py example.jpg 3`
