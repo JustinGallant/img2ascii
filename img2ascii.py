@@ -39,41 +39,42 @@ def convert2ASCII(img):
     return grid
 
 
+if __name__ == "__main__":
+    
+    #Argument count
+    argc = len(sys.argv)
 
-#Argument count
-argc = len(sys.argv)
-
-if len(sys.argv) < 2:
-    print("Invalid command. At least one argument required.\nUsage: python3 img2ascii <filename>.png")
-    sys.exit()
-elif argc == 2:
-    img = Image.open(sys.argv[1])
-elif argc >= 3:
-    if not sys.argv[2].isdigit():
-        print("Invalid command. Scale must be an integer.\nUsage: python3 img2ascii <filename>.png <scale>")
+    if len(sys.argv) < 2:
+        print("Invalid command. At least one argument required.\nUsage: python3 img2ascii <filename>.png")
         sys.exit()
-    
-    #Open image
-    img = Image.open(sys.argv[1]) 
-    
-    #Set required variables using image data
-    width,height = img.size
-    type = img.format
-    scale = int(sys.argv[2])
-    
-    #Resize image. Save
-    img.resize((width//scale, height//scale)).save("scaled.%s"%type)
-    
-    #Open resized image
-    img = Image.open("scaled.%s"%type)
-    
-#Write converted ascii characters to text file then close file
-file = open("ascii.txt", 'w')
-for row in convert2ASCII(img):
-    file.write("".join(row)+'\n')
-file.close()
+    elif argc == 2:
+        img = Image.open(sys.argv[1])
+    elif argc >= 3:
+        if not sys.argv[2].isdigit():
+            print("Invalid command. Scale must be an integer.\nUsage: python3 img2ascii <filename>.png <scale>")
+            sys.exit()
+        
+        #Open image
+        img = Image.open(sys.argv[1]) 
+        
+        #Set required variables using image data
+        width,height = img.size
+        type = img.format
+        scale = int(sys.argv[2])
+        
+        #Resize image. Save
+        img.resize((width//scale, height//scale)).save("scaled.%s"%type)
+        
+        #Open resized image
+        img = Image.open("scaled.%s"%type)
+        
+    #Write converted ascii characters to text file then close file
+    file = open("ascii.txt", 'w')
+    for row in convert2ASCII(img):
+        file.write("".join(row)+'\n')
+    file.close()
 
-#Notify conversion was successful
-print("Conversion completed successfully!")
+    #Notify conversion was successful
+    print("Conversion completed successfully!")
     
     
