@@ -1,4 +1,4 @@
-import sys
+import sys, os
 from PIL import Image
     
 def convert2ASCII(img):
@@ -73,6 +73,8 @@ if __name__ == "__main__":
     for row in convert2ASCII(img):
         file.write("".join(row)+'\n')
     file.close()
+    
+    os.remove("scaled.%s"%type)
 
     #Notify conversion was successful
     print("Conversion completed successfully!")
