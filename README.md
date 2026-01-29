@@ -7,11 +7,17 @@ img2ascii is an image conversion tool to convert any still image to ascii charac
 - Download dependancies: `pip install pillow` (Fork of PIL [Python Image Library])
 
 ## How to use
-`python3 img2ascii.py <ImageFile> <Scale>`\
-Output is stored as text file, ascii.txt. Scaled images are generated then removed upon completion. Scale is an optional argument.
+```bash 
+python3 img2ascii.py <ImageFile> <Scale>
+```
+Scale is an optional argument.\
+Scaled images are generated then removed upon completion.\
+Output is stored as text file, ascii.txt.
 
 ## Example:
-`python3 img2ascii.py example.jpg 3`
+```bash
+python3 img2ascii.py example.jpg 3
+```
 
 ### Input Example:
 ![exampleInput](https://github.com/user-attachments/assets/64b305b5-7062-4574-a7d3-4938139d632c)
