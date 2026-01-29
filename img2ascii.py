@@ -1,7 +1,8 @@
 import sys, os
 from PIL import Image
-    
+
 def convert2ASCII(img):
+    """Convert image to grid of ASCII characters"""
     width,height = img.size
     
     #Fill grid list with image size
@@ -40,23 +41,18 @@ def convert2ASCII(img):
 
 
 if __name__ == "__main__":
-    
     #Argument count
     argc = len(sys.argv)
-
+    img = Image.open(sys.argv[1])
+    
     if len(sys.argv) < 2:
-        print("Invalid command. At least one argument required.\nUsage: python3 img2ascii <filename>.png")
+        print("Invalid command. At least one argument required.\nUsage: python3 img2ascii <filename>")
         sys.exit()
-    elif argc == 2:
-        img = Image.open(sys.argv[1])
     elif argc >= 3:
         if not sys.argv[2].isdigit():
-            print("Invalid command. Scale must be an integer.\nUsage: python3 img2ascii <filename>.png <scale>")
+            print("Invalid command. Scale must be an integer.\nUsage: python3 img2ascii <filename> <scale>")
             sys.exit()
-        
-        #Open image
-        img = Image.open(sys.argv[1]) 
-        
+               
         #Set required variables using image data
         width,height = img.size
         type = img.format
@@ -74,6 +70,7 @@ if __name__ == "__main__":
         file.write("".join(row)+'\n')
     file.close()
     
+    img.close()
     os.remove("scaled.%s"%type)
 
     #Notify conversion was successful
