@@ -71,9 +71,15 @@ if __name__ == "__main__":
     file.close()
     
     img.close()
-    os.remove("scaled.%s"%type)
-
+    
+    try:
+        os.remove("scaled.%s"%type)
+    except:
+        pass
+    
     #Notify conversion was successful
     print("Conversion completed successfully!")
+
+    
     
     
